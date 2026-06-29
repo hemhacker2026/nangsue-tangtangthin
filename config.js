@@ -2,7 +2,7 @@
 // 🔑 ตั้งค่าการเชื่อมต่อ Google Sheets
 // ============================================================
 
-const SPREADSHEET_ID = '1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T';
+const SPREADSHEET_ID = '1LGVOEEg2dkbMADeJk4v6O6ToWpc9utPz1mpMceceA5Q';
 const SHEET_NAME = 'Sheet1';
 
 // ใช้ CORS Proxy เพื่อเลี่ยงปัญหา CORS
