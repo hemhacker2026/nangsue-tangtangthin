@@ -1,39 +1,13 @@
-/**
- * ============================================================
- * config.js
- * ไฟล์ตั้งค่าการเชื่อมต่อกับ Google Sheets
- * ============================================================
- * 
- * วิธีการใช้งาน:
- * 1. เปิด Google Sheets ที่มีข้อมูลหนังสือ
- * 2. ไปที่ File > Share > เปลี่ยนเป็น "Anyone with the link" > Viewer
- * 3. คัดลอก Spreadsheet ID จาก URL
- * 4. วางในตัวแปร SPREADSHEET_ID ด้านล่าง
- * ============================================================
- */
-
 // ============================================================
 // 🔑 ตั้งค่าการเชื่อมต่อ Google Sheets
 // ============================================================
 
-/** 
- * รหัส Spreadsheet (ได้จาก URL ของ Google Sheets)
- * ตัวอย่าง URL: https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F.../edit
- * ให้เอาส่วน 1A2B3C4D5E6F... มาใส่ตรงนี้
- */
-const SPREADSHEET_ID = '1LGVOEEg2dkbMADeJk4v6O6ToWpc9utPz1mpMceceA5Q';
-
-/** 
- * ชื่อ Sheet ที่ใช้เก็บข้อมูล (ถ้าไม่เปลี่ยนชื่อจะใช้ Sheet1)
- */
+const SPREADSHEET_ID = '1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T';
 const SHEET_NAME = 'Sheet1';
 
-/** 
- * URL สำหรับดึงข้อมูลจาก Google Sheets แบบ JSON
- * ใช้ gviz API ของ Google เพื่อแปลงข้อมูลเป็น JSON
- */
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-
+// ใช้ CORS Proxy เพื่อเลี่ยงปัญหา CORS
+const PROXY_URL = 'https://api.allorigins.win/raw?url=';
+const SHEET_URL = `${PROXY_URL}https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
 // ============================================================
 // 📚 ข้อมูลสำรอง (ใช้กรณีเชื่อมต่อ Google Sheets ไม่ได้)
 // ============================================================
