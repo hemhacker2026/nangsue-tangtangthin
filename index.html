@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>📚 หนังสือต่างถิ่น - Nangsue Tangtangthin</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts - ฟอนต์สวยอ่านง่าย -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- ส่วน Header - แถบด้านบน                      -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo" onclick="navigateTo('home')" 
+     style="cursor: pointer; transition: transform 0.15s; user-select: none;" 
+     onmousedown="this.style.transform='scale(0.95)'" 
+     onmouseup="this.style.transform='scale(1)'" 
+     onmouseleave="this.style.transform='scale(1)'">
+    <i class="fas fa-book-open"></i>
+    <span>หนังสือต่างถิ่น</span>
+</div>
+            <div class="header-actions">
+                <!-- ปุ่มค้นหา -->
+                <button class="btn-icon" id="btnSearch" aria-label="ค้นหา">
+                    <i class="fas fa-search"></i>
+                </button>
+                <!-- ปุ่มตะกร้า -->
+                <button class="btn-icon" id="btnCart" aria-label="ตะกร้า">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <!-- ปุ่มเมนู -->
+                <button class="btn-icon" id="btnMenu" aria-label="เมนู">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- แถบค้นหา (ซ่อน/แสดง) -->
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="ค้นหาชื่อหนังสือ, ผู้แต่ง, หมวดหมู่...">
+            <button id="searchClose"><i class="fas fa-times"></i></button>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- ส่วนเมนูนำทาง (Slide Menu)                  -->
+    <!-- ============================================ -->
+    <nav class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h3>📚 เมนู</h3>
+            <button id="menuClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="menu-list">
+            <li><a href="#" data-page="home"><i class="fas fa-home"></i> หน้าแรก</a></li>
+            <li><a href="#" data-page="all-books"><i class="fas fa-th-list"></i> หนังสือทั้งหมด</a></li>
+            <li><a href="#" data-page="categories"><i class="fas fa-tags"></i> หมวดหมู่</a></li>
+            <li><a href="#" data-page="cart"><i class="fas fa-shopping-cart"></i> ตะกร้าของฉัน</a></li>
+            <li class="divider"></li>
+            <li><a href="#" id="menuFacebook"><i class="fab fa-facebook-messenger"></i> ติดต่อผ่านเพจ</a></li>
+        </ul>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- ส่วนเนื้อหาหลัก (Main Content)              -->
+    <!-- ============================================ -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ========== หน้า HOME ========== -->
+        <section id="page-home" class="page active">
+            <!-- แบนเนอร์ -->
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1>📖 หนังสือต่างถิ่น</h1>
+                    <p>แหล่งรวมหนังสืออิสลาม ครบทุกหมวด ทุกระดับ</p>
+                    <span class="hero-tag">⚡ อ่านง่าย เรียนรู้ลึก</span>
+                </div>
+            </div>
+
+            <!-- หนังสือแนะนำ 5 เล่ม -->
+            <section class="book-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-star" style="color: #FFD700;"></i> หนังสือแนะนำ</h2>
+                    <a href="#" data-page="all-books" class="see-all">ดูทั้งหมด →</a>
+                </div>
+                <div class="book-grid" id="featuredBooks">
+                    <!-- โหลดจาก JavaScript -->
+                    <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> กำลังโหลด...</div>
+                </div>
+            </section>
+
+            <!-- หนังสือขายดี 5 เล่ม -->
+            <section class="book-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-fire" style="color: #FF6B35;"></i> ขายดีที่สุด</h2>
+                    <a href="#" data-page="all-books" class="see-all">ดูทั้งหมด →</a>
+                </div>
+                <div class="book-grid" id="bestSellerBooks">
+                    <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> กำลังโหลด...</div>
+                </div>
+            </section>
+
+            <!-- หนังสือค้นหามากที่สุด 5 เล่ม -->
+            <section class="book-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-search" style="color: #4A90D9;"></i> ค้นหามากที่สุด</h2>
+                    <a href="#" data-page="all-books" class="see-all">ดูทั้งหมด →</a>
+                </div>
+                <div class="book-grid" id="mostSearchedBooks">
+                    <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> กำลังโหลด...</div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ========== หน้า ALL BOOKS ========== -->
+        <section id="page-all-books" class="page">
+            <div class="page-header">
+                <h2>📚 หนังสือทั้งหมด</h2>
+                <p>พบหนังสือ <span id="totalBooksCount">0</span> เล่ม</p>
+            </div>
+
+            <!-- ตัวกรอง -->
+            <div class="filter-section">
+                <!-- หมวดหมู่ -->
+                <div class="filter-group">
+                    <label>หมวดหมู่</label>
+                    <div class="filter-chips" id="categoryFilters">
+                        <button class="chip active" data-filter="all">ทั้งหมด</button>
+                        <button class="chip" data-filter="อะกีดะฮ์">อะกีดะฮ์</button>
+                        <button class="chip" data-filter="ฟิกฮ์">ฟิกฮ์</button>
+                        <button class="chip" data-filter="หะดีษ">หะดีษ</button>
+                        <button class="chip" data-filter="ตัฟซีร">ตัฟซีร</button>
+                        <button class="chip" data-filter="ภาษา">ภาษา</button>
+                        <button class="chip" data-filter="ซีเราะฮ์">ซีเราะฮ์</button>
+                        <button class="chip" data-filter="อื่นๆ">อื่นๆ</button>
+                    </div>
+                </div>
+                <!-- ระดับ -->
+                <div class="filter-group">
+                    <label>ระดับความยาก</label>
+                    <div class="filter-chips" id="levelFilters">
+                        <button class="chip active" data-filter="all">ทั้งหมด</button>
+                        <button class="chip" data-filter="เริ่มต้น">🟢 เริ่มต้น</button>
+                        <button class="chip" data-filter="ปานกลาง">🟡 ปานกลาง</button>
+                        <button class="chip" data-filter="สูง">🔴 สูง</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- รายการหนังสือ -->
+            <div class="book-grid" id="allBooksGrid">
+                <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> กำลังโหลด...</div>
+            </div>
+
+            <!-- ปุ่มโหลดเพิ่ม -->
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn-secondary">โหลดเพิ่มเติม</button>
+            </div>
+        </section>
+
+        <!-- ========== หน้า CATEGORIES ========== -->
+        <section id="page-categories" class="page">
+            <div class="page-header">
+                <h2>🏷️ หมวดหมู่หนังสือ</h2>
+                <p>เลือกหมวดหมู่ที่สนใจ</p>
+            </div>
+
+            <div class="category-grid" id="categoryGrid">
+                <!-- สร้างจาก JavaScript -->
+            </div>
+        </section>
+
+        <!-- ========== หน้า DETAIL (ซ่อน) ========== -->
+        <section id="page-detail" class="page">
+            <button class="back-btn" id="detailBack"><i class="fas fa-arrow-left"></i> กลับ</button>
+            <div id="bookDetailContainer">
+                <!-- โหลดจาก JavaScript -->
+            </div>
+        </section>
+
+        <!-- ========== หน้า CART ========== -->
+        <section id="page-cart" class="page">
+            <div class="page-header">
+                <h2>🛒 ตะกร้าหนังสือ</h2>
+                <p>รายการหนังสือที่คุณสนใจ</p>
+            </div>
+            <div id="cartContainer">
+                <!-- โหลดจาก JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- ส่วน Footer                                 -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>📚 หนังสือต่างถิ่น</h4>
+                <p>แหล่งรวมหนังสืออิสลามครบวงจร</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" data-page="home">หน้าแรก</a>
+                <a href="#" data-page="all-books">หนังสือทั้งหมด</a>
+                <a href="#" data-page="categories">หมวดหมู่</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" id="footerFacebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" id="footerLine"><i class="fab fa-line"></i></a>
+                <a href="#" id="footerYoutube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 หนังสือต่างถิ่น - พัฒนาด้วย AppSheet &nbsp;|&nbsp; <span id="currentYear"></span></p>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- Toast Notification (แจ้งเตือน)              -->
+    <!-- ============================================ -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle" id="toastIcon"></i>
+        <span id="toastMessage">คัดลอกเรียบร้อยแล้ว!</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ส่วน Overlay สำหรับปิดเมนู                  -->
+    <!-- ============================================ -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ============================================ -->
+    <!-- ไฟล์ JavaScript                              -->
+    <!-- ============================================ -->
+    <!-- อันใหม่ (แก้ไขแล้ว) -->
+<script src="config.js"></script>
+<script src="script.js"></>
+
+</body>
+</html>
